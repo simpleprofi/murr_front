@@ -51,6 +51,10 @@ ul {
     margin-right: 1rem;
 }
 
+.ml {
+    margin-left: 1rem;
+}
+
 .text-center {
     text-align: center;
 }

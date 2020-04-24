@@ -9,6 +9,13 @@
       <i class="el-icon-view"></i>
     </router-link>
 
+    <router-link
+        active-class="bottom_icon-active"
+        class="bottom_icon"
+        to="/murr_chat">
+      <i class="el-icon-chat-line-square"></i>
+    </router-link>
+
     <span
         class="bottom_icon pointer"
         @click="openCreateMurr">
@@ -21,7 +28,6 @@
         to="/murren">
       <i class="el-icon-picture-outline-round"></i>
     </router-link>
-
   </div>
 </template>
 
@@ -33,7 +39,7 @@
           await this.$store.dispatch('changeShowCreateMurr_actions')
         } else {
           const dataForPopUpMessage = {
-            message: 'Для создания мурра ребуется авторизация 😳',
+            message: 'Для создания мурра требуется авторизация 😳',
             customClass: 'element-ui-message__error',
             type: 'warning'
           };

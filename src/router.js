@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
 
-import store from '@/store/index';
+import store from '@/store/index'
 
 const router = new Router({
   mode: 'history',
@@ -45,7 +45,10 @@ const router = new Router({
     {
       path: '/create_murr',
       name: 'create_murr',
-      meta: {layout: 'empty-layout', accessTokenExpected: true},
+      meta: {
+        layout: 'empty-layout',
+        accessTokenExpected: true
+      },
       component: () => import('./views/murr_card/CreateMurr.vue')
     },
     {
@@ -54,6 +57,14 @@ const router = new Router({
       meta: {layout: 'main-layout'},
       component: () => import('./views/murr_card/WatchOnMurr.vue')
     },
+    {
+      path: '/murr_chat',
+      name: 'murr_chat',
+      meta: {layout: 'main-layout'},
+      component: () => import('./views/murr_chat/MurrChat.vue')
+    },
+
+
     {
       path: '/about',
       name: 'about',
@@ -67,27 +78,27 @@ const router = new Router({
       component: () => import('./views/common/Page404.vue'),
     },
   ],
-});
+})
 
 router.beforeEach((to, from, next) => {
 
   const isTokenExpectedAndExist = (to.matched.some(r => r.meta.accessTokenExpected) && store.state.auth.accessToken) ||
-    !to.matched.some(r => r.meta.accessTokenExpected);
+    !to.matched.some(r => r.meta.accessTokenExpected)
 
   if (isTokenExpectedAndExist) {
-    return next();
+    return next()
   }
 
   store.dispatch('popUpMessage', {
     message: 'Требуется авторизация 😳',
     type: 'warning',
-  });
+  })
 
   router.push('/')
-  store.dispatch('changeShowLoginForm_actions');
-});
+  store.dispatch('changeShowLoginForm_actions')
+})
 
-export default router;
+export default router
 
 
 // workaround for push to "/some_url" when client on "/some_url"
